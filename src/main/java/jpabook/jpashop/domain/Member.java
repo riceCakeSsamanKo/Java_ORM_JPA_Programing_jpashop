@@ -15,14 +15,14 @@ public class Member {
     @Column(name = "MEMBER_ID")
     private Long id;
 
+    @OneToMany(mappedBy = "member")  // Order.member가 연관관계 주인
+    private List<Order> orders = new ArrayList<>();
+
+
+    private String zipcode;
     private String name;
     private String city;
     private String street;
-    private String zipcode;
 
-    /**  양방향 구성시 사용
-    @OneToMany(mappedBy = "member")
-    private List<Order> orders = new ArrayList<>();
-    */
 
 }
