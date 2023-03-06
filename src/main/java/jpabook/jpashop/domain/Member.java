@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
 public class Member {
 
     @Id @GeneratedValue
@@ -18,11 +18,25 @@ public class Member {
     @OneToMany(mappedBy = "member")  // Order.member가 연관관계 주인
     private List<Order> orders = new ArrayList<>();
 
-
     private String zipcode;
     private String name;
     private String city;
     private String street;
 
+    // Setter
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
 }

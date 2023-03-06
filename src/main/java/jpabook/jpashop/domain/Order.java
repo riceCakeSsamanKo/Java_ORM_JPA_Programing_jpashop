@@ -12,11 +12,9 @@ import java.util.List;
 @Entity
 @Table(name = "ORDERS")
 @Getter
-@Setter
 public class Order {
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     @Column(name = "ORDER_ID")
     private Long id;
 
@@ -31,4 +29,19 @@ public class Order {
 
     @Enumerated(EnumType.STRING)  // OrderStatus는 enum이고 숫자가 아닌 String으로 식별함
     private OrderStatus status;
+
+    // Setter
+    public void setOrderDate(LocalDateTime orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
+
+    // 연관관계 편의 메소드 (연관 관계 주인에게만 존재)
+    public void addMember(Member member){
+        this.member = member;
+        member.getOrders().add(this);
+    }
 }
