@@ -15,8 +15,8 @@ public class Order {
     @Column(name = "ORDER_ID")
     private Long id;
 
-    @Column(name = "MEMBER_ID")
-    private Long memberId;
+    @ManyToOne  //Order.member가 연관관계 주인
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
     private LocalDateTime orderDate;
