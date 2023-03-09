@@ -24,6 +24,16 @@ public class OrderItem {
     private int orderPrice;
     private int count;
 
+    // 연관관계 편의 메소드 (연관 관계 주인이 아닌 엔티티에 존재)
+    public void addOrder(Order order) {
+        this.order = order;
+        order.getOrderItems().add(this);
+    }
+    public void addItem(Item item) {
+        this.item = item;
+        item.getOrderItems().add(this);
+    }
+
     // Setter
     public void setId(Long id) {
         this.id = id;
