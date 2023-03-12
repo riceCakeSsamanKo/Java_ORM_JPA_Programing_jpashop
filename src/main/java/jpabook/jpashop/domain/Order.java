@@ -3,6 +3,7 @@ package jpabook.jpashop.domain;
 import lombok.Getter;
 
 import javax.persistence.*;
+import javax.xml.namespace.QName;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +25,13 @@ public class Order {
     @OneToMany(mappedBy = "order")  // OrderItem.order가 연관관계 주인
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    private LocalDateTime orderDate;
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery;
+
     @Enumerated(EnumType.STRING)  // OrderStatus는 enum이고 숫자가 아닌 String으로 식별함
     private OrderStatus status;
+    private LocalDateTime orderDate;
 
     // 연관관계 편의 메소드 (연관 관계 주인에게만 존재)
     public void addMember(Member member) {

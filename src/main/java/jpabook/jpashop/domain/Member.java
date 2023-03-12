@@ -16,13 +16,14 @@ public class Member {
     @Column(name = "MEMBER_ID", nullable = false)
     private Long id;
 
-    @OneToMany(mappedBy = "member")  // Order.member가 연관관계 주인
-    private List<Order> orders = new ArrayList<>();
-
     private String zipcode;
     private String name;
     private String city;
     private String street;
+
+    @OneToMany(mappedBy = "member")  // Order.member가 연관관계 주인
+    private List<Order> orders = new ArrayList<>();
+
 
     // 연관관계 편의 메소드 (연관 관계 주인이 아닌 엔티티에 존재)
     public void addOrder(Order order){
