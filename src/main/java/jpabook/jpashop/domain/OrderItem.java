@@ -13,11 +13,11 @@ public class OrderItem extends BaseEntity{
     @Column(name = "ORDER_ITEM_ID")
     private Long id;
 
-    @ManyToOne  // OrderItem.order가 연관관계 주인
+    @ManyToOne(fetch = FetchType.LAZY)  // OrderItem.order가 연관관계 주인
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 
-    @ManyToOne  // OrderItem.item이 연관관계 주인
+    @ManyToOne(fetch = FetchType.LAZY)  // OrderItem.item이 연관관계 주인
     @JoinColumn(name = "ITEM_ID")
     private Item item;
 
