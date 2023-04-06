@@ -3,7 +3,6 @@ package jpabook.jpashop.domain;
 import lombok.Getter;
 
 import javax.persistence.*;
-import javax.xml.namespace.QName;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +17,14 @@ public class Order extends BaseEntity{
     @Column(name = "ORDER_ID")
     private Long id;
 
-    @ManyToOne  // Order.member가 연관관계 주인
+    @ManyToOne(fetch = FetchType.LAZY)  // Order.member가 연관관계 주인
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @OneToMany(mappedBy = "order")  // OrderItem.order가 연관관계 주인
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)  // OrderItem.order가 연관관계 주인
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)  //cascade가 ALL이라는 것은 주문을 생성시에 배송정보도 동시에 생성하겠다는 것
     @JoinColumn(name = "DELIVERY_ID")
     private Delivery delivery;
 
