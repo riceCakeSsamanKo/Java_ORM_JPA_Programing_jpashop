@@ -16,10 +16,9 @@ public class Member extends BaseEntity{
     @Column(name = "MEMBER_ID", nullable = false)
     private Long id;
 
-    private String zipcode;
     private String name;
-    private String city;
-    private String street;
+    @Embedded
+    private Address address;
 
     @OneToMany(mappedBy = "member")  // Order.member가 연관관계 주인
     private List<Order> orders = new ArrayList<>();
@@ -36,19 +35,9 @@ public class Member extends BaseEntity{
         this.id = id;
     }
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
+    public void setAddress(Address address) { this.address = address; }
 }
