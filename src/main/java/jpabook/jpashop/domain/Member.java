@@ -15,8 +15,9 @@ public class Member extends BaseEntity{
     @Id @GeneratedValue
     @Column(name = "MEMBER_ID", nullable = false)
     private Long id;
-
+    @Column(name = "USERNAME", nullable = false)
     private String name;
+
     @Embedded
     private Address address;
 

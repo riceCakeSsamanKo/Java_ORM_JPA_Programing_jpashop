@@ -1,9 +1,12 @@
 package jpabook.jpashop.domain;
 
+import lombok.Getter;
+
 import javax.persistence.Embeddable;
 import java.util.Objects;
 
 @Embeddable
+@Getter  // 불변 객체는 setter를 넣지 않는다
 public class Address {
 
     private String city;
@@ -14,30 +17,6 @@ public class Address {
     public Address(String city, String street, String zipCode) {
         this.city = city;
         this.street = street;
-        this.zipCode = zipCode;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 

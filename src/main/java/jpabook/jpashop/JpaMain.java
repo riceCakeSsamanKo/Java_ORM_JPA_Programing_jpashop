@@ -18,11 +18,15 @@ public class JpaMain {
         tx.begin();
         try{
             Member member = new Member();
-            member.setName("memberA");
+            member.setName("user");
+            Address address = new Address("city", "street", "zipcode");
+            member.setAddress(address);
+
             em.persist(member);
 
             tx.commit();
         } catch(Exception e) {
+            e.printStackTrace();
             tx.rollback(); //오류 발생 시 롤백
         } finally {
             em.close();
